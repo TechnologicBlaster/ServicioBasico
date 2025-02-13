@@ -1,0 +1,39 @@
+<!-- Aqui se encuentra la estructura basica de nuestra pagina HTML. -->  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicio Simple</title>
+</head>
+<!-- El body es el que nos ayudara a darle una estructura fija a nuestra pagina, tambien nos mostrara la funcion basica de este. -->
+<body>
+    <h1>Ejemplo de servicio</h1>
+    <!-- Esta etiqueta "button" nos muestra el boton por el cual la accion se va a ejecutar. --> 
+    <button onclick="ejecuta()">
+        Ejecuta
+    </button>
+    <!-- El script por su parte, ejecutara el archivo PHP por el cual, el boton de ejecutar nos mostrara un mensaje. --> 
+    <script>
+        async function ejecuta() {
+            try {
+        // Se conecta a servicio.php y recibe su respuesta.
+                const resp = 
+                    await fetch("servicio.php")
+                if (resp.ok) {
+                    const texto = 
+                        await resp.text() 
+                    alert(texto)
+                // El else se va a ejecutar en el caso de que el comando PHP falle o ocurra algun defecto a la hora de ejecutar el archivo PHP.
+                } else {
+                    throw new Error(
+                    resp.statusText)
+                }
+                } catch (error) {
+                    console.error(error)
+                    alert(error.message)
+            }
+        }
+    </script>
+</body>
+</html>
